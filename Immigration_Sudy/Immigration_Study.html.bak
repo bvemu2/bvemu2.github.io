@@ -205,14 +205,14 @@ Data Source : USCIS.gov
   var vlSpec2 ={
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Google's stock price over time.",
-  "data": {"url": "data/stocks.csv"},
+  "data": {"data\stocks.csv"},
   "transform": [{"filter": "datum.symbol==='GOOG'"}],
   "mark": "line",
   "encoding": {
     "x": {"field": "date", "type": "temporal"},
     "y": {"field": "price", "type": "quantitative"}
   }
-}
+  };
 
 
   // Embed the visualization in the container with id `vis`
