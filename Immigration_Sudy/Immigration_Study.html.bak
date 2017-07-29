@@ -191,10 +191,12 @@ Data Source : USCIS.gov
     }
   };
 
-
-
+var opt = {
+  
+  "actions" : false,
+}
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis", vlSpec);
+  vega.embed("#vis", vlSpec,opt);
  
   </script>
 
@@ -205,18 +207,23 @@ Data Source : USCIS.gov
   var vlSpec2 ={
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Google's stock price over time.",
-  "data": {"data\stocks.csv"},
+  "data": {"url": "data/stocks.csv"},
   "transform": [{"filter": "datum.symbol==='GOOG'"}],
   "mark": "line",
   "encoding": {
     "x": {"field": "date", "type": "temporal"},
     "y": {"field": "price", "type": "quantitative"}
   }
-  };
+}
+
+var opt = {
+  
+  "actions" : false,
+}
 
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis2", vlSpec2);
+  vega.embed("#vis2", vlSpec2,opt);
  
   </script>
 
@@ -238,10 +245,14 @@ Data Source : USCIS.gov
       }
     };
 
+var opt = {
+  
+  "actions" : false,
+}
 
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis3", vlSpec3);
+  vega.embed("#vis3", vlSpec3,opt);
  
   </script>
 
@@ -265,9 +276,12 @@ Data Source : USCIS.gov
     };
 
 
-
+var opt = {
+  
+  "actions" : false,
+}
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis4", vlSpec4);
+  vega.embed("#vis4", vlSpec4,opt);
  
   </script>
 
