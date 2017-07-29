@@ -13,6 +13,8 @@
 
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="project.css" />
+	  <link rel="stylesheet" type="text/css" href="../vega-tooltip.min.css"></link>
+  
 
 		<style>
 
@@ -77,6 +79,7 @@
 	  <script src="../vega.js"></script>
           <script src="../vega-lite.js"></script>
           <script src="../vega-embed.js"></script>
+	  <script src="../vega-tooltip.min.js"></script>
 	
 	<script type="text/javascript">
 		var deleteLog = false;
@@ -213,7 +216,7 @@ Data Source : USCIS.gov
   "encoding": {
     "x": {"field": "year", "type": "temporal"},
     "y": {"field": "immigrants", "type": "quantitative"}
-    "tooltip": {"field": "immigrants", "type": "quantitative"}	  
+    
   }
 }
      var opt = {
@@ -222,8 +225,17 @@ Data Source : USCIS.gov
               }
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis2", vlSpec2,opt);
- 
+  vega.embed("#vis2", vlSpec2,opt {
+      var tooltipOption = {
+    		showAllFields: false,
+    		fields: [
+      		{ field: "year" },
+      		{ field: "immigrants" }
+      		
+    		]
+  		};
+      vegaTooltip.vegaLite(result.view, vlSpec, tooltipOption);
+    });
   </script>
 
 
