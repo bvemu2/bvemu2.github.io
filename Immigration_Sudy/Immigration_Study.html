@@ -207,13 +207,12 @@ Data Source : USCIS.gov
   // Assign the specification to a local variable vlSpec.
   var vlSpec2 ={
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-  "description": "Google's stock price over time.",
-  "data": {"url": "data/stocks.csv"},
-  "transform": [{"filter": "datum.symbol==='GOOG'"}],
+  "description": "Legal Immigration over time.",
+  "data": {"url": "data/lpr.csv"},
   "mark": "line",
   "encoding": {
-    "x": {"field": "date", "type": "temporal"},
-    "y": {"field": "price", "type": "quantitative"}
+    "x": {"field": "year", "type": "temporal"},
+    "y": {"field": "immigrants", "type": "quantitative"}
   }
 }
      var opt = {
