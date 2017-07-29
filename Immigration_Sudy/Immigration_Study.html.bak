@@ -191,10 +191,11 @@ Data Source : USCIS.gov
     }
   };
 
-var opt = {
+     var opt = {
   
-  "actions" : false,
-}
+               "actions" : false,
+              }
+
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis", vlSpec,opt);
  
@@ -215,12 +216,10 @@ var opt = {
     "y": {"field": "price", "type": "quantitative"}
   }
 }
-
-var opt = {
+     var opt = {
   
-  "actions" : false,
-}
-
+               "actions" : false,
+              }
 
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis2", vlSpec2,opt);
@@ -245,11 +244,10 @@ var opt = {
       }
     };
 
-var opt = {
+    var opt = {
   
-  "actions" : false,
-}
-
+               "actions" : false,
+              }
 
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis3", vlSpec3,opt);
@@ -275,11 +273,11 @@ var opt = {
       }
     };
 
-
-var opt = {
+    var opt = {
   
-  "actions" : false,
-}
+               "actions" : false,
+              }
+
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis4", vlSpec4,opt);
  
