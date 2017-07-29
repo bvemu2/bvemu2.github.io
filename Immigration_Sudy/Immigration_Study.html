@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Callback function - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage callback function." />
+	<meta name="keywords"  content="fullpage,jquery,demo,callback,function,event" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="project.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.0-rc2/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.10/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.19/vega-embed.js"></script>
+	
+	<script type="text/javascript">
+		var deleteLog = false;
+
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', 'lastPage'],
+				menu: '#menu',
+				onLeave: function(index, nextIndex, direction){
+					if(deleteLog){
+						$('#callbacksDiv').html('');
+					}
+					$('#callbacksDiv').append(' ')
+					console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
+				},
+				onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
+					if(deleteLog){
+						$('#callbacksDiv').html('');
+					}
+					$('#callbacksDiv').append(' ');
+					console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+				},
+				afterRender: function(){
+					$('#callbacksDiv').append('<p> </p>');
+					console.log("afterRender");
+				},
+				afterResize: function(){
+					$('#callbacksDiv').append(' ');
+					console.log("afterResize");
+				},
+				afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+					$('#callbacksDiv').append(' ');
+					deleteLog = true;
+					console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+					console.log("----------------");
+				},
+				afterLoad: function(anchorLink, index){
+                    console.log("after Load  " + index);
+					$('#callbacksDiv').append(' ');
+					deleteLog = true;
+					console.log('===============');
+					console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+				}
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+
+<div style="position:fixed;top:50px;left:50px;color:white;z-index:999;" id="callbacksDiv"></div>
+
+
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">Intro</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+	<li data-menuanchor="4thPage"><a href="#4thPage">fourth slide</a></li>
+
+</ul>
+
+
+
+ <div id="fullpage">
+	<div class="section " id="vis2"> </div>
+	<div class="section" id="vis"></div>
+	<div class="section" id="vis3"></div>
+	<div class="section" id="vis4"></div>
+ </div>
+
+
+
+ <div id="vis"></div>
+  <script>
+
+  // Assign the specification to a local variable vlSpec.
+  var vlSpec = {
+ "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "values": [
+        {"a": 2015, "b": 100}, {"a": 2014, "b": 80}
+      ]
+    },
+    "mark": "bar",
+    "encoding": {
+      "y": {"field": "a", "type": "nominal"},
+      "x": {
+         "field": "b", "type": "quantitative",
+        "axis": {
+          "title": "Average of b"
+        }
+      }
+    }
+  };
+
+
+
+  // Embed the visualization in the container with id `vis`
+  vega.embed("#vis", vlSpec);
+ 
+  </script>
+
+
+   <div id="vis2"></div>
+  <script>
+  // Assign the specification to a local variable vlSpec.
+  var vlSpec2 = {
+ "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "values": [
+        {"a": 2015, "b": 100}, {"a": 2014, "b": 120}
+      ]
+    },
+    "mark": "line",
+    "encoding": {
+    "x": {"field": "a", "type": "temporal"},
+    "y": {"field": "b", "type": "quantitative"}
+      }
+    };
+
+
+
+  // Embed the visualization in the container with id `vis`
+  vega.embed("#vis2", vlSpec2);
+ 
+  </script>
+
+
+     <div id="vis3"></div>
+  <script>
+  // Assign the specification to a local variable vlSpec.
+  var vlSpec3 = {
+ "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "values": [
+        {"a": 2015, "b": 100}, {"a": 2014, "b": 120}
+      ]
+    },
+    "mark": "line",
+    "encoding": {
+    "x": {"field": "a", "type": "temporal"},
+    "y": {"field": "b", "type": "quantitative"}
+      }
+    };
+
+
+
+  // Embed the visualization in the container with id `vis`
+  vega.embed("#vis3", vlSpec3);
+ 
+  </script>
+
+
+  
+     <div id="vis4"></div>
+  <script>
+  // Assign the specification to a local variable vlSpec.
+  var vlSpec4 = {
+ "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "values": [
+        {"a": 2015, "b": 100}, {"a": 2014, "b": 120}
+      ]
+    },
+    "mark": "line",
+    "encoding": {
+    "x": {"field": "a", "type": "temporal"},
+    "y": {"field": "b", "type": "quantitative"}
+      }
+    };
+
+
+
+  // Embed the visualization in the container with id `vis`
+  vega.embed("#vis4", vlSpec4);
+ 
+  </script>
+
+</body>
+</html>
