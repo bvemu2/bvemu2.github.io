@@ -289,7 +289,7 @@ References: Interactive Slides from Fullpage
   "height": 350,
     "selection": {
     "brush": {
-      "type": "single","on": "mouseover"
+      "type": "multi","on": "mouseover"
     }
   },
   "mark": "point",
@@ -310,10 +310,11 @@ References: Interactive Slides from Fullpage
 
     
   },
-      "color": {
-      "condition": {"selection": "brush"},
-      "value": "green"
+     "size": {
+      "condition": {"selection": "brush","value": 300},
+      "value": 50
     }
+
 
 	
 }
