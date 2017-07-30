@@ -286,8 +286,13 @@ References: Interactive Slides from Fullpage
 
   "data": {"url": "data/lpr.csv"},
   "width": 500,
-  "height": 350,	  
-  "mark": "line",
+  "height": 350,
+    "selection": {
+    "brush": {
+      "type": "interval"
+    }
+  },
+  "mark": "point",
   "encoding": {
     "x": {"field": "Year", "type": "temporal","timeUnit": "year", 
 	 "axis": {"title": "Year",
@@ -304,7 +309,11 @@ References: Interactive Slides from Fullpage
 		   
 
     
-  }
+  },
+      "color": {
+      "condition": {"selection": "brush", "field": "Year", "type": "temporal"},
+      "value": "grey"
+    }
 
 	
 }
@@ -315,13 +324,7 @@ References: Interactive Slides from Fullpage
               }
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis2", vlSpec2, opt,  function (error, result) {
-      var tooltipOption = {
-    		showAllFields: true
-    	
-  		};
-      vegaTooltip.vegaLite(result.view, vlSpec2, tooltipOption);
-    });
+  vega.embed("#vis2", vlSpec2, opt);
   </script>
 
 
