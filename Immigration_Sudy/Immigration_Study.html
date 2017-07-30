@@ -136,8 +136,8 @@
 
 
 <ul id="menu">
-	<li data-menuanchor="firstPage"><a href="#firstPage">Legal Residency</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Summary</a></li>
+	<li data-menuanchor="firstPage"><a href="#firstPage">Summary</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Legal Residency</a></li>
 	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 	<li data-menuanchor="4thPage"><a href="#4thPage">fourth slide</a></li>
     <li data-menuanchor="5thPage"><a href="#5thPage">fifth slide</a></li>
@@ -155,10 +155,24 @@ Data Source : DHS Immigration-Statistics Yearbook
 <br>	
 References: Interactive Slides from Fullpage 
 	    <br> 
- 	    graphs using vega-lite 
+ 	    Graphs built using vega-lite 
 </div>
 
  <div id="fullpage">
+	<div class="section" >
+        
+	
+	      <p>Trigger: Mouse click on any event will result in selection
+		 <br>     
+		 Scenes: Move from one immigration metric to the other
+		 <br>
+		 Parameters: Enable selection values
+		 <br>
+		 Annotations: Tool Tips will give the values on the charts.     
+	      </p>
+	
+
+	</div> 
 	 
 	<div class="section" >
 	
@@ -183,20 +197,7 @@ References: Interactive Slides from Fullpage
 
 
 
-	<div class="section" >
-        
-	
-	      <p>Trigger: Mouse click on any event will result in selection
-		 <br>     
-		 Scenes: Move from one immigration metric to the other
-		 <br>
-		 Parameters: Enable selection values
-		 <br>
-		 Annotations: Tool Tips will give the values on the charts.     
-	      </p>
-	
 
-	</div>
 	
 	<div class="section" id="vis3"></div>
 	<div class="section" id="vis4"></div>
@@ -253,18 +254,14 @@ References: Interactive Slides from Fullpage
   "encoding": {
     "x": {"field": "Year", "type": "temporal","timeUnit": "year", 
 	 "axis": {"title": "Year",
-	          "titlePadding": 20,
-		  "titleColor": "Red",
-		  "titleFontSize": 30
+	          "titlePadding": 20
 	 
 	 }
 	 
 	 },
     "y": {"field": "LPR", "type": "quantitative",
 	 "axis": {"title": "Total Immigration",
-	          "titlePadding": 20,
-		  "titleColor": "Red",
-		  "titleFontSize": 30
+	          "titlePadding": 20
 	 
 	 }
 		   
