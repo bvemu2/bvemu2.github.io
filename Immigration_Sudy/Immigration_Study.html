@@ -233,6 +233,14 @@ Data Source : USCIS.gov
   var vlSpec2 ={
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Legal Immigration over time.",
+"selection": {
+    "year": {
+      "type": "single",
+      "fields": ["year"],
+      "bind": {"input": "range", "min": 1969,"max": 1981,"step": 1}
+    }
+  },
+	  
   "data": {"url": "data/lpr.csv"},
   "width": 350,
   "height": 350,	  
@@ -251,7 +259,15 @@ Data Source : USCIS.gov
 	          "titlePadding": 20,
 	          "fontSize": 100 
 	 
-	 }
+	 },
+	  
+	   "color": {
+      "condition": {
+        "selection": "year",
+        "field": "year", "type": "nominal"
+      },
+      "value": "grey"
+    }
 	 
 	 
 	 }
