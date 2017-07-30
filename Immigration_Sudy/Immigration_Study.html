@@ -219,9 +219,9 @@ Data Source : USCIS.gov
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Legal Immigration over time.",
   "data": {"url": "data/lpr.csv"},
-  "mark": "line",
+  "mark": "point",
   "encoding": {
-    "x": {"field": "year", "type": "temporal"},
+    "x": {"field": "year", "type": "quantitative"},
     "y": {"field": "immigrants", "type": "quantitative"}
     
   }
