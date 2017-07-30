@@ -174,14 +174,15 @@ References: Interactive Slides from Fullpage
 	</div> 
 	 
 	<div class="section" >
-	      <H1> Legal permanent residents over the years </H>
+	      <H1> LPR Growth over the Years </H>
+		  <br> <br>
 	      <div class="chart" id="vis2"></div>
 	</div>	 
 
 
     <div class="section" >
     <H1> Immigration Numbers by Region <H1>  
-	
+	<br> 
 	<div class="chart" id="vis"></div>
 	</div>
 	
@@ -247,7 +248,12 @@ References: Interactive Slides from Fullpage
 	},
 	    "color": {
       "field": "Year", "type": "nominal",
-      "scale": {"range": ["#EA98D2", "#659CCA"]}
+      "scale": {
+	  "domain": ["2013","2014","2015"],
+        "range": ["#e7ba52","#c7c7c7","#EA98D2"]
+	  
+	  
+	  }
     }
     }
   };
