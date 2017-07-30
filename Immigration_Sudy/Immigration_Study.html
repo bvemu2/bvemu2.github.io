@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Immigration Case Study</title>
-	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="author" content="Balaji Vemulapalli" />
 	<meta name="description" content="Immigration Case Study" />
 	<meta name="keywords"  content="fullpage,jquery,demo,callback,function,event" />
 	<meta name="Resource-type" content="Document" />
@@ -79,6 +79,7 @@
 	  <script src="../vega.js"></script>
           <script src="../vega-lite.js"></script>
           <script src="../vega-embed.js"></script>
+	  <script src="../vega-embed.min.js"></script>
 	  <script src="../vega-tooltip.min.js"></script>
 	
 	<script type="text/javascript">
@@ -142,6 +143,12 @@
     <li data-menuanchor="5thPage"><a href="#5thPage">fifth slide</a></li>
 </ul>
 
+	
+<!-- Placeholder for the tooltip -->
+<div id="vis-tooltip" class="vg-tooltip"></div>	
+	
+	
+	
 <div id="header">CS-498 Final Project - Immigration - Study</div>
 <div id="footer">
 Data Source : USCIS.gov
@@ -150,20 +157,39 @@ Data Source : USCIS.gov
 </div>
 
  <div id="fullpage">
-	<div class="section " id="vis2"></div>
+	 
 	<div class="section" >
-    <h1>Feel free</h1>
 	
-	<p>Just what you would expect.
-	   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	</p>
+	      <p> 
+		      Legal immigration has grown consistenly over the years.
+		      <br>
+		      Sudden Dip in early 2000's
+		      <br>
+		      Maybe due to 09/11
+		      <br>
+		      <br>
+	      </p>
+	
+          <div class="chart" id="vis2"></div>
+	</div>	 
+
+
+
+	<div class="section" >
+        
+	
+	      <p>Trigger: Mouse click on any event will result in selection
+		 <br>     
+		 Scenes: Move from one immigration metric to the other
+		 <br>
+		 Parameters: Enable selection values
+		 <br>
+		 Annotations: Tool Tips will give the values on the charts.     
+	      </p>
 	
 
-    <div class="chart" id="vis"></div>
-	
-	
 	</div>
+	
 	<div class="section" id="vis3"></div>
 	<div class="section" id="vis4"></div>
  </div>
@@ -211,14 +237,49 @@ Data Source : USCIS.gov
   var vlSpec2 ={
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Legal Immigration over time.",
+"selection": {
+    "year": {
+      "type": "single",
+      "fields": ["year"],
+      "bind": {"input": "range", "min": 2000,"max": 2015,"step": 1}
+    }
+  },
+	  
   "data": {"url": "data/lpr.csv"},
-  "mark": "line",
+  "width": 350,
+  "height": 350,	  
+  "mark": "point",
   "encoding": {
-    "x": {"field": "year", "type": "temporal"},
-    "y": {"field": "immigrants", "type": "quantitative"}
+    "x": {"field": "year", "type": "temporal",
+	 "axis": {"title": "Year",
+	          "titlePadding": 20,
+	          "fontSize": 100 
+	 
+	 }
+	 
+	 },
+    "y": {"field": "immigrants", "type": "quantitative",
+	 "axis": {"title": "Total Immigration",
+	          "titlePadding": 20,
+	          "fontSize": 100 
+	 
+	 },
+	  
+              "color": {
+      "condition": {
+        "selection": "year",
+        "field": "immigrants", "type": "temportal"
+      },
+      "value": "grey"
+    }	
+		   
+
     
   }
+
+	
 }
+  };
      var opt = {
   
                "actions" : false,
@@ -227,14 +288,10 @@ Data Source : USCIS.gov
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis2", vlSpec2, opt,  function (error, result) {
       var tooltipOption = {
-    		showAllFields: false,
-    		fields: [
-      		{ field: "year" },
-      		{ field: "immigrants" }
-      		
-    		]
+    		showAllFields: true
+    	
   		};
-      vegaTooltip.vegaLite(result.view, vlSpec, tooltipOption);
+      vegaTooltip.vegaLite(result.view, vlSpec2, tooltipOption);
     });
   </script>
 
@@ -253,7 +310,13 @@ Data Source : USCIS.gov
     "encoding": {
     "x": {"field": "a", "type": "temporal"},
     "y": {"field": "b", "type": "quantitative"}
-      }
+      
+	  
+	  
+	  
+	  
+	  
+	  }
     };
 
     var opt = {
