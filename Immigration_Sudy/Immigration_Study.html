@@ -293,11 +293,13 @@ References: Interactive Slides from Fullpage
   // Assign the specification to a local variable vlSpec.
   var vlSpec3 = {
  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-    "data": {"url": "data/lpr_char.csv"},	  
+    "data": {"url": "data/lpr_char.csv"},
+    "width": 350,
+    "height": 350,
     "mark": "bar",
     "encoding": {
-    "x": {"field": "Region", "type": "nominal"},
-    "y": { "field": "2013","type": "quantitative"}
+    "x": {"field": "2013", "type": "quantitative"},
+    "y": { "aggregate": "sum","type": "quantitative"}
       
 	  
 	  
