@@ -234,8 +234,23 @@ Data Source : USCIS.gov
   "height": 350,	  
   "mark": "point",
   "encoding": {
-    "x": {"field": "year", "type": "temporal"},
-    "y": {"field": "immigrants", "type": "quantitative"}
+    "x": {"field": "year", "type": "temporal",
+	 "axis": {"title": "Year",
+	          "titlePadding": 10,
+	          "fontSize": 11 
+	 
+	 }
+	 
+	 },
+    "y": {"field": "immigrants", "type": "quantitative",
+	 "axis": {"title": "Total Immigration",
+	          "titlePadding": 10,
+	          "fontSize": 11 
+	 
+	 }
+	 
+	 
+	 }
     
   }
 }
