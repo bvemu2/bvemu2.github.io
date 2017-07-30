@@ -137,8 +137,8 @@
 
 <ul id="menu">
 	<li data-menuanchor="firstPage"><a href="#firstPage">Summary</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Legal Residency Growth</a></li>
-	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">LPR Growth</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">LPR By Region</a></li>
 	<li data-menuanchor="4thPage"><a href="#4thPage">fourth slide</a></li>
     <li data-menuanchor="5thPage"><a href="#5thPage">fifth slide</a></li>
 </ul>
@@ -177,7 +177,7 @@ References: Interactive Slides from Fullpage
 	<div class="section" >
 	
 	      <p> 
-		      <font color="red">
+		      <font color="Red">
 		       <font size="6">       
 		         <div align="center"> 	      
 	                         Slide shows legal permanent residents over the years
@@ -205,7 +205,7 @@ References: Interactive Slides from Fullpage
 
 
 
- <div id="vis"></div>
+  <div id="vis"></div>
   <script>
 
   // Assign the specification to a local variable vlSpec.
@@ -214,16 +214,56 @@ References: Interactive Slides from Fullpage
 
     "data": {
       "values": [
-        {"Region": "Africa", "2014": 98413,"2015":101415 }, {"Region": "Asia", "2014": 430508,"2015":419297},
-	{"Region": "Europe", "2014": 83266,"2015":85803}, {"Region": "North America", "2014": 324354,"2015": 366126}, 
-	{"Region": "Oceana", "2014": 5112,"2015": 5404}, {"Region": "South America", "2014": 73715,"2015": 72309},
-	{"Region": "Unknown", "2014": 1150,"2015": 677}      
+        {"Region": "Africa", "Year": "2013", "Count": 98304},
+		{"Region": "Africa", "Year": "2014", "Count": 98413},
+		{"Region": "Africa", "Year": "2015", "Count": 101415},
+		{"Region": "Asia", "Year": "2013", "Count": 400548},
+		{"Region": "Asia", "Year": "2014", "Count": 430508},
+		{"Region": "Asia", "Year": "2015", "Count": 419297},
+        {"Region": "Europe", "Year": "2013", "Count": 86556},
+		{"Region": "Europe", "Year": "2014", "Count": 83266},
+		{"Region": "Europe", "Year": "2015", "Count": 85803},
+		{"Region": "North America", "Year": "2013", "Count": 315660},
+		{"Region": "North America", "Year": "2014", "Count": 324354},
+		{"Region": "North America", "Year": "2015", "Count": 366126},
+		{"Region": "Oceana", "Year": "2013", "Count": 5277},
+		{"Region": "Oceana", "Year": "2014", "Count": 5112},
+		{"Region": "Oceana", "Year": "2015", "Count": 5404},
+		{"Region": "South America", "Year": "2013", "Count": 80945},
+		{"Region": "South America", "Year": "2014", "Count": 73715},
+		{"Region": "South America", "Year": "2015", "Count": 72309},
+		{"Region": "Others", "Year": "2013", "Count": 3263},
+		{"Region": "Others", "Year": "2014", "Count": 1150},
+		{"Region": "Others", "Year": "2015", "Count": 677},
       ]
     },
+	 
     "mark": "bar",
     "encoding": {
-    "x": {"aggregate": "sum", "field": "2013", "type": "quantitative"},
-    "y": {"field": "Region", "type": "nominal"}
+		"column": {
+      "field": "Region", "type": "ordinal"
+    },
+    "x": { "field": "Year", "type": "nominal",
+	
+		 "axis": {"title": "Year",
+	          "titlePadding": 20
+	 
+	 }
+	
+	},
+    "y": {"field": "Count", "type": "quantitative",
+	
+			 "axis": {"title": "Immigration Count",
+	          "titlePadding": 20
+	 
+	 }
+	
+	
+	},
+	    "color": {
+      "field": "Year", "type": "nominal",
+      "scale": {"range": ["#EA98D2", "#659CCA"]}
+    }
     }
   };
 
@@ -233,9 +273,17 @@ References: Interactive Slides from Fullpage
               }
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis", vlSpec,opt);
+  
+  vega.embed("#vis", vlSpec, opt,  function (error, result) {
+      var tooltipOption = {
+    		showAllFields: true
+    	
+  		};
+      vegaTooltip.vegaLite(result.view, vlSpec, tooltipOption);
+    });
  
   </script>
+
 
 
    <div id="vis2"></div>
