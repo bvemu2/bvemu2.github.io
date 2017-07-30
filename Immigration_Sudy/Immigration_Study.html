@@ -234,12 +234,8 @@ Data Source : USCIS.gov
   // Embed the visualization in the container with id `vis`
   vega.embed("#vis2", vlSpec2, opt,  function (error, result) {
       var tooltipOption = {
-    		showAllFields: false,
-    		fields: [
-      		{ field: "year" },
-      		{ field: "immigrants" }
-      		
-    		]
+    		showAllFields: true
+    	
   		};
       vegaTooltip.vegaLite(result.view, vlSpec2, tooltipOption);
     });
