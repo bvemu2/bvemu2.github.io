@@ -250,7 +250,7 @@ Data Source : USCIS.gov
   "height": 350,	  
   "mark": "point",
   "encoding": {
-    "x": {"field": "Year", "type": "temporal",
+    "x": {"field": "Year", "type": "temporal", "timeUnit": "year",
 	 "axis": {"title": "Year",
 	          "titlePadding": 20,
 	          "fontSize": 100 
@@ -263,15 +263,7 @@ Data Source : USCIS.gov
 	          "titlePadding": 20,
 	          "fontSize": 100 
 	 
-	 },
-	  
-              "color": {
-      "condition": {
-        "selection": "year",
-        "field": "immigrants", "type": "temportal"
-      },
-      "value": "grey"
-    }	
+	 }
 		   
 
     
