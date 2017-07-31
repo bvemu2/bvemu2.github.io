@@ -87,8 +87,8 @@
 
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-				anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage'],
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#1bbc9b'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
 				menu: '#menu',
 				onLeave: function(index, nextIndex, direction){
 					if(deleteLog){
@@ -139,7 +139,7 @@
 	<li data-menuanchor="firstPage"><a href="#firstPage">Summary</a></li>
 	<li data-menuanchor="secondPage"><a href="#secondPage">LPR Growth</a></li>
 	<li data-menuanchor="3rdPage"><a href="#3rdPage">LPR By Region</a></li>
-	<li data-menuanchor="4thPage"><a href="#4thPage">fourth slide</a></li>
+	<li data-menuanchor="4thPage"><a href="#4thPage">LPR by Age and Gender</a></li>
 </ul>
 
 	
@@ -152,9 +152,9 @@
 <div id="footer">
 Data Source : DHS Immigration-Statistics Yearbook
 <br>	
-References: Interactive Slides from Fullpage 
+References: Graphs built using Vega-Lite 
 	    <br> 
- 	    Graphs built using Vega-Lite 
+ 	     Interactive Slides built using Fullpage 
 </div>
 
  <div id="fullpage">
@@ -181,12 +181,16 @@ References: Interactive Slides from Fullpage
 
 
     <div class="section" >
-    <H1> Immigration Numbers by Region <H1>  
+    <H1> LPR by Region <H1>  
 	<br> 
 	<div class="chart" id="vis"></div>
 	</div>
 	
-	<div class="section" id="vis3"></div>
+    <div class="section" >
+    <H1> LPR Age and Gender <H1>  
+	<br> 
+	<div class="chart" id="vis4"></div>
+	</div>
  </div>
 
 
@@ -330,32 +334,75 @@ References: Interactive Slides from Fullpage
 
 
   
-     <div id="vis4"></div>
+ <div id="vis4"></div>
   <script>
+
   // Assign the specification to a local variable vlSpec.
   var vlSpec4 = {
  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+
     "data": {
       "values": [
-        {"a": 2015, "b": 100}, {"a": 2014, "b": 120}
+        {"Age": "<16", "Gender": "Female", "Count": 79932},{"Age": "16 to 20", "Gender": "Female", "Count": 41422}, {"Age": ">21", "Gender": "Female", "Count": 448180}	, {"Age": "Unknown", "Gender": "Female", "Count": 2},	
+		{"Age": "<16", "Gender": "Male", "Count": 84123},{"Age": "16 to 20", "Gender": "Male", "Count": 42550}, {"Age":">21", "Gender": "Male", "Count": 354809}	,{"Age": "Unknown", "Gender": "Male", "Count": 3},
+		{"Age": "<16", "Gender": "Unknown", "Count": 3},{"Age": "16 to 20", "Gender": "Unknown", "Count": 0}, {"Age": ">21", "Gender": "Unknown", "Count": 7}	,{"Age": "Unknown", "Gender": "Unknown", "Count": 0}
+
       ]
     },
-    "mark": "line",
+	 
+    "mark": "bar",
     "encoding": {
-    "x": {"field": "a", "type": "temporal"},
-    "y": {"field": "b", "type": "quantitative"}
-      }
-    };
+		"column": {
+      "field": "Gender", "type": "ordinal"
+    },
+    "x": { "field": "Count", "type": "quantitative",
+	
+		 "axis": {"title": "Immigration Count",
+	          "titlePadding": 20
+	 
+	 }
+	
+	},
+    "y": {"field": "Age", "type": "nominal",
+	
+			 "axis": {"title": "Age Range",
+	          "titlePadding": 20
+	 
+	 }
+	
+	
+	},
+	    "color": {
+      "field": "Age", "type": "nominal",
+      "scale": {
+	  "domain": ["<16","16 to 20",">21"],
+        "range": ["#e7ba52","#c7c7c7","#EA98D2"]
+	  
+	  
+	  }
+    }
+    }
+  };
 
-    var opt = {
+     var opt = {
   
                "actions" : false,
               }
 
   // Embed the visualization in the container with id `vis`
-  vega.embed("#vis4", vlSpec4,opt);
+  
+  vega.embed("#vis4", vlSpec4, opt,  function (error, result) {
+      var tooltipOption = {
+    		showAllFields: true
+    	
+  		};
+      vegaTooltip.vegaLite(result.view, vlSpec4, tooltipOption);
+    });
  
   </script>
+
+
+
 
 </body>
 </html>
